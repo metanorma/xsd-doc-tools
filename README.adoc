@@ -1,0 +1,71 @@
+= Metanorma XSD documentation tools
+
+== Purpose
+
+This repository demonstrates how to generate documentation
+directly from XSD.
+
+
+== Prerequisites
+
+Generation of XSD documentation depends on the following tools:
+
+* https://github.com/metanorma/xs3p[xs3p] for generating documentation
+* https://github.com/metanorma/xsdvi[xsdvi] for the generation of diagrams,
+  which depends on http://xerces.apache.org[Apache Xerces]
+
+== Usage
+
+=== Annotation
+
+Documentation is entered into the XSD file using the
+`<xsd:annotation>` and `<xsd:documentation>` tags.
+
+e.g.
+
+[source,xml]
+----
+<schema
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  targetNamespace="http://standards.iso.org/iso/19110/gfc/1.1" version="1.1">
+	<!-- =========================== Annotation ============================== -->
+	<xs:annotation>
+		<xs:documentation>
+      ### Description
+
+      GFC 1.1 is an XML Schema implementation derived from ISO ISO 19110,
+      Geographic information -- Methodology for feature cataloguing. It includes
+      ...
+		<xs:documentation>
+	<xs:annotation>
+----
+
+
+=== Generation
+
+Command to generate documentation under `docs/`:
+
+[source,sh]
+----
+make docs
+----
+
+NOTE: This command will download all necessary dependencies under `.archives/`
+and place them in corresponding paths.
+
+=== Adopting the system
+
+Copy the `Makefile` and adopt it to your project.
+
+
+== Examples
+
+Documentation created from these tools can be seen at:
+
+* https://schemas.unitsml.org[UnitsML Schema site]
+* https://schemas.isotc211.org[ISO/TC 211 XML Schemas site]
+
+== License
+
+Copyright Ribose.
